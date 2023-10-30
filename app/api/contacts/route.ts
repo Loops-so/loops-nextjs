@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import LoopsClient from "loops-js";
+import LoopsClient from "loops";
 
-const loops = new LoopsClient(process.env.LOOPS_API_KEY);
+const loops = new LoopsClient(process.env.LOOPS_API_KEY as string);
 
 
 /**
  * Create or Update a contact
  */
-export async function POST(request: Request) {
-  // Properties can be sent as JSON along with the email address
+export async function POST(request: NextRequest) {
+  // Contact properties can be sent as JSON along with the email address
+
   const res = await request.json();
 
   const email = res["email"];
